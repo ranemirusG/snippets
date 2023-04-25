@@ -1,0 +1,103 @@
+"Trabajar con la línea de comandos siempre te hará más libre, porque evitas depender de terceros programas"
+
+# RESOURCES
+# =========
+https://tldp.org/LDP/abs/html/special-chars.html
+https://github.com/jlevy/the-art-of-command-line
+
+
+# REDIRECT
+# ========
+
+#append output (stdout, file descriptor 1) onto file.txt and send stderr (file descriptor 2) to the same place as fd1
+cmd >>file.txt 2>&1
+cmd 2>&1 | tee -a file.txt # if you want to see the output in the terminal too
+
+
+
+# SIZE
+# ====
+
+# size of directory content
+du -hd 1
+
+
+
+
+# FIND
+# ====
+
+## buscar palabras en archivos ---> lo que hace Spotlight
+mdfind 
+
+## find the non-Homebrew stuff in /usr/local/bin with:
+find /usr/local/bin ! -lname '../Cellar/*'.
+    ---> con y si el . final da diferente resultado porque??
+
+## deleta everything but 'exceptionFile'
+find . \! -name 'exceptionFile' -delete  
+
+## list onyl directories
+find * maxdepth 0 -type d
+find . maxdepth 1 -type d #incluye al current directory
+
+
+
+# METADATA
+# ========
+
+## para ver info de un archivo
+stat -x file 
+
+# hex code of input ??
+xxd -ps
+
+
+# bundle ID
+ps [-ww] -o comm= -p <pid>
+defaults read /Applications/APPNAME/Contents/Info  CFBundleIdentifier
+
+
+# HARDWARE
+# ========
+diskutil eject /Volumes/Kindle 
+
+
+
+# PROCESSES
+# =========
+
+## get path of a process
+which `ps -o comm= -p $PID`
+
+## cerrar procesos que coincidan con el pattern
+pkill -f [pattern] ---> por ejemplo: pkill -f Chrome
+
+
+
+# NAMES and PATH
+# ==============
+
+## Renaming files in a folder to sequential numbers
+num=0; for i in *; do mv "$i" "$(printf '%d' $num).${i#*.}"; ((num++)); done
+
+## Batch rename files
+# incluir el nombre del directorio en el nombre del archivo
+for i in `find ./* -type d -name "*dir*"`  
+do
+mv "${i}/oldname.html" "$i"/`basename "$i"`_newNomeclature.html
+done
+
+
+
+# REMOTE CONNECTION
+# =================
+
+#login with ssh
+ssh user@host
+
+#download to my computer from remote
+scp user@host:/path/to/file /path/to/destination
+
+
+
