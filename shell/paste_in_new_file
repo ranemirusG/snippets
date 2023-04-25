@@ -1,4 +1,0 @@
-# good for multiline copy paste
-cat > newFileName << "EOF"
-# heredoc> PASTE HERE
-# heredoc> ^D or EOF

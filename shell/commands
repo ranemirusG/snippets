@@ -58,11 +58,11 @@ ps [-ww] -o comm= -p <pid>
 defaults read /Applications/APPNAME/Contents/Info  CFBundleIdentifier
 
 
-# HARDWARE
-# ========
-diskutil eject /Volumes/Kindle 
+# CLIPBOARD / PASTEBOARD
 
-
+cat > newFileName << "EOF" # good for multiline copy paste
+    # heredoc> PASTE HERE
+    # heredoc> ^D or EOF
 
 # PROCESSES
 # =========
