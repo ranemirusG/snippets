@@ -24,8 +24,13 @@ du -hd 1
 
 
 
-# FIND
-# ====
+# SEARCH / FIND
+# =============
+
+## Look for flag in man page
+man ps | less -p -u
+This search for the pattern (-p) "-u" in the man page of ps
+
 
 ## buscar palabras en archivos ---> lo que hace Spotlight
 mdfind 
